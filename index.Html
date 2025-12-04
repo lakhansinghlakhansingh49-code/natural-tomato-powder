@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Tomato Powder - Natural Products</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script><!-- Canva Element SDK -->
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+      body {
+        box-sizing: border-box;
+      }
+
+      /* Focus outline for accessibility */
+      :focus-visible {
+        outline: 3px solid #e63946;
+        outline-offset: 2px;
+      }
+    </style>
+  <script>
+      // Tailwind base overrides for html/body height
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["system-ui", "Arial", "sans-serif"],
+            },
+          },
+        },
+      };
+
+      // Default configuration for Canva editing
+      const defaultConfig = {
+        header_title: "100% Natural Tomato Powder",
+        home_heading: "Welcome to Our Natural Products",
+        home_subtext:
+          "Pure, chemical-free, sun-dried tomato powder directly from farm to kitchen.",
+        about_heading: "About Us",
+        about_text:
+          "We provide 100% natural and hygienically processed tomato powder. No preservatives, no added colours — only pure dried tomatoes.",
+        products_heading: "Our Products",
+        more_products_heading: "More Products",
+        wholesale_heading: "Wholesale & Bulk Orders",
+        wholesale_text:
+          "We supply high-quality tomato and spice powders in bulk for retailers, restaurants, cloud kitchens, and food manufacturers. Custom pack sizes and white-labelling options are available.",
+        wholesale_cta: "Enquire for Bulk Pricing",
+        contact_heading: "Contact Us",
+        contact_subtext:
+          "Have questions or want to place an order? Share your details and we’ll get back to you shortly.",
+        footer_text: "© 2025 Natural Tomato Powder. All rights reserved.",
+        primary_button_text: "Order on WhatsApp",
+        submit_button_text: "Send Enquiry",
+
+        background_color: "#fff7f5", // BACKGROUND
+        surface_color: "#ffffff", // SECONDARY_SURFACE
+        text_color: "#2b2b2b", // TEXT
+        primary_color: "#e63946", // PRIMARY_ACTION
+        secondary_action_color: "#ff6f61", // SECONDARY_ACTION
+
+        font_family: "system-ui",
+        font_size: 16,
+      };
+
+      // Apply config-driven styles and text to DOM
+      async function applyConfig(config) {
+        const cfg = config || defaultConfig;
+
+        const body = document.body;
+        const mainWrapper = document.getElementById("app-wrapper");
+        const navBar = document.getElementById("top-nav");
+
+        const headerTitle = document.getElementById("header-title");
+        const homeHeading = document.getElementById("home-heading");
+        const homeSub = document.getElementById("home-subtext");
+        const aboutHeading = document.getElementById("about-heading");
+        const aboutText = document.getElementById("about-text");
+        const productsHeading = document.getElementById("products-heading");
+        const moreProductsHeading =
+          document.getElementById("more-products-heading");
+        const wholesaleHeading =
+          document.getElementById("wholesale-heading");
+        const wholesaleText = document.getElementById("wholesale-text");
+        const wholesaleCta = document.getElementById("wholesale-cta");
+
+        const contactHeading = document.getElementById("contact-heading");
+        const contactSub = document.getElementById("contact-subtext");
+        const footerText = document.getElementById("footer-text");
+
+        const primaryButtons = document.querySelectorAll(".primary-btn");
+        const secondaryButtons =
+          document.querySelectorAll(".secondary-btn");
+        const contactSubmit = document.getElementById("contact-submit");
+
+        const fontTargets =
+          document.querySelectorAll("[data-font='primary']");
+        const smallFontTargets =
+          document.querySelectorAll("[data-font='secondary']");
+
+        const bg = cfg.background_color || defaultConfig.background_color;
+        const surface = cfg.surface_color || defaultConfig.surface_color;
+        const textColor = cfg.text_color || defaultConfig.text_color;
+        const primary = cfg.primary_color || defaultConfig.primary_color;
+        const secondary =
+          cfg.secondary_action_color ||
+          defaultConfig.secondary_action_color;
+
+        const fontFamily =
+          cfg.font_family || defaultConfig.font_family || "system-ui";
+        const baseSize = cfg.font_size || defaultConfig.font_size || 16;
+
+        // Background & main surface
+        if (body) {
+          body.style.backgroundColor = bg;
+          body.style.color = textColor;
+          body.style.fontFamily = fontFamily + ", Arial, sans-serif";
+        }
+        if (mainWrapper) {
+          mainWrapper.style.backgroundColor = "transparent";
+        }
+        if (navBar) {
+          navBar.style.backgroundColor = bg;
+        }
+
+        // Text content
+        if (headerTitle) headerTitle.textContent = cfg.header_title;
+        if (homeHeading) homeHeading.textContent = cfg.home_heading;
+        if (homeSub) homeSub.textContent = cfg.home_subtext;
+
+        if (aboutHeading) aboutHeading.textContent = cfg.about_heading;
+        if (aboutText) aboutText.textContent = cfg.about_text;
+
+        if (productsHeading)
+          productsHeading.textContent = cfg.products_heading;
+        if (moreProductsHeading)
+          moreProductsHeading.textContent = cfg.more_products_heading;
+
+        if (wholesaleHeading)
+          wholesaleHeading.textContent = cfg.wholesale_heading;
+        if (wholesaleText) wholesaleText.textContent = cfg.wholesale_text;
+        if (wholesaleCta) wholesaleCta.textContent = cfg.wholesale_cta;
+
+        if (contactHeading)
+          contactHeading.textContent = cfg.contact_heading;
+        if (contactSub) contactSub.textContent = cfg.contact_subtext;
+
+        if (footerText) footerText.textContent = cfg.footer_text;
+
+        // Buttons text
+        primaryButtons.forEach((btn) => {
+          btn.textContent = cfg.primary_button_text;
+          btn.style.backgroundColor = primary;
+          btn.style.color = "#ffffff";
+        });
+
+        if (contactSubmit) {
+          contactSubmit.textContent = cfg.submit_button_text;
+          contactSubmit.style.backgroundColor = primary;
+          contactSubmit.style.color = "#ffffff";
+        }
+
+        secondaryButtons.forEach((btn) => {
+          btn.textContent = cfg.wholesale_cta;
+          btn.style.backgroundColor = secondary;
+          btn.style.color = "#ffffff";
+        });
+
+        // Card / surface backgrounds
+        const surfaces =
+          document.querySelectorAll(".surface-card, .surface-panel");
+        surfaces.forEach((el) => {
+          el.style.backgroundColor = surface;
+          el.style.color = textColor;
+        });
+
+        // Typography scaling
+        fontTargets.forEach((el) => {
+          el.style.fontFamily = fontFamily + ", Arial, sans-serif";
+        });
+        smallFontTargets.forEach((el) => {
+          el.style.fontFamily = fontFamily + ", Arial, sans-serif";
+        });
+
+        // Scale sizes proportionally
+        const h1 = document.querySelectorAll("[data-type='heading-1']");
+        const h2 = document.querySelectorAll("[data-type='heading-2']");
+        const bodyText = document.querySelectorAll("[data-type='body']");
+        const labelText = document.querySelectorAll("[data-type='label']");
+        const tinyText = document.querySelectorAll("[data-type='tiny']");
+
+        h1.forEach((el) => (el.style.fontSize = baseSize * 2 + "px"));
+        h2.forEach((el) => (el.style.fontSize = baseSize * 1.5 + "px"));
+        bodyText.forEach((el) => (el.style.fontSize = baseSize + "px"));
+        labelText.forEach(
+          (el) => (el.style.fontSize = baseSize * 0.9 + "px")
+        );
+        tinyText.forEach(
+          (el) => (el.style.fontSize = baseSize * 0.8 + "px")
+        );
+      }
+
+      // Initialize Element SDK for Canva editing
+      (function initElementSdk() {
+        if (!window.elementSdk) {
+          // Not running inside Canva, just apply defaults
+          window.addEventListener("DOMContentLoaded", () => {
+            applyConfig(defaultConfig);
+          });
+          return;
+        }
+
+        const element = {
+          defaultConfig,
+          onConfigChange: async (config) => {
+            await applyConfig(config);
+          },
+          mapToCapabilities: (config) => {
+            const cfg = config || defaultConfig;
+
+            const recolorables = [
+              // 1. BACKGROUND
+              {
+                get: () => cfg.background_color || defaultConfig.background_color,
+                set: (value) => {
+                  cfg.background_color = value;
+                  window.elementSdk.setConfig({
+                    background_color: value,
+                  });
+                },
+              },
+              // 2. SECONDARY_SURFACE
+              {
+                get: () => cfg.surface_color || defaultConfig.surface_color,
+                set: (value) => {
+                  cfg.surface_color = value;
+                  window.elementSdk.setConfig({
+                    surface_color: value,
+                  });
+                },
+              },
+              // 3. TEXT
+              {
+                get: () => cfg.text_color || defaultConfig.text_color,
+                set: (value) => {
+                  cfg.text_color = value;
+                  window.elementSdk.setConfig({
+                    text_color: value,
+                  });
+                },
+              },
+              // 4. PRIMARY_ACTION
+              {
+                get: () => cfg.primary_color || defaultConfig.primary_color,
+                set: (value) => {
+                  cfg.primary_color = value;
+                  window.elementSdk.setConfig({
+                    primary_color: value,
+                  });
+                },
+              },
+              // 5. SECONDARY_ACTION
+              {
+                get: () =>
+                  cfg.secondary_action_color ||
+                  defaultConfig.secondary_action_color,
+                set: (value) => {
+                  cfg.secondary_action_color = value;
+                  window.elementSdk.setConfig({
+                    secondary_action_color: value,
+                  });
+                },
+              },
+            ];
+
+            return {
+              recolorables,
+              borderables: [],
+              fontEditable: {
+                get: () =>
+                  cfg.font_family || defaultConfig.font_family || "system-ui",
+                set: (value) => {
+                  cfg.font_family = value;
+                  window.elementSdk.setConfig({ font_family: value });
+                },
+              },
+              fontSizeable: {
+                get: () => cfg.font_size || defaultConfig.font_size || 16,
+                set: (value) => {
+                  cfg.font_size = value;
+                  window.elementSdk.setConfig({ font_size: value });
+                },
+              },
+            };
+          },
+          mapToEditPanelValues: (config) => {
+            const cfg = config || defaultConfig;
+            return new Map([
+              ["header_title", cfg.header_title],
+              ["home_heading", cfg.home_heading],
+              ["home_subtext", cfg.home_subtext],
+              ["about_heading", cfg.about_heading],
+              ["about_text", cfg.about_text],
+              ["products_heading", cfg.products_heading],
+              ["more_products_heading", cfg.more_products_heading],
+              ["wholesale_heading", cfg.wholesale_heading],
+              ["wholesale_text", cfg.wholesale_text],
+              ["wholesale_cta", cfg.wholesale_cta],
+              ["contact_heading", cfg.contact_heading],
+              ["contact_subtext", cfg.contact_subtext],
+              ["footer_text", cfg.footer_text],
+              ["primary_button_text", cfg.primary_button_text],
+              ["submit_button_text", cfg.submit_button_text],
+            ]);
+          },
+        };
+
+        window.elementSdk.init(element);
+
+        window.addEventListener("DOMContentLoaded", () => {
+          applyConfig(window.elementSdk.config || defaultConfig);
+        });
+      })();
+
+      // Simple smooth scroll for internal nav
+      function scrollToSection(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      // Handle contact form submit inline (no real backend)
+      function setupContactForm() {
+        const form = document.getElementById("contact-form");
+        const status = document.getElementById("contact-status");
+        if (!form || !status) return;
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("contact-name").value.trim();
+          const phone = document.getElementById("contact-phone").value.trim();
+          const message =
+            document.getElementById("contact-message").value.trim();
+
+          if (!name || !phone || !message) {
+            status.textContent =
+              "Please fill in your name, phone, and message.";
+            status.className =
+              "mt-3 text-sm font-medium text-red-700 bg-red-50 rounded-md px-3 py-2";
+            return;
+          }
+
+          // Simulate success
+          status.textContent =
+            "Thank you! Your enquiry has been noted. We’ll get back to you soon.";
+          status.className =
+            "mt-3 text-sm font-medium text-green-800 bg-green-50 rounded-md px-3 py-2";
+
+          form.reset();
+        });
+      }
+
+      window.addEventListener("DOMContentLoaded", setupContactForm);
+    </script>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="w-full h-full">
+  <div id="app-wrapper" class="w-full min-h-full flex flex-col" aria-label="Tomato Powder Landing Page">
+   <header class="w-full" role="banner">
+    <nav id="top-nav" class="w-full">
+     <div class="max-w-5xl mx-auto px-5 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3"><!-- Simple tomato icon -->
+       <div class="w-9 h-9 rounded-full bg-red-500 flex items-center justify-center shadow-md" aria-hidden="true">
+        <div class="w-4 h-4 rounded-full border-2 border-white" style="border-color: #fff7f5"></div>
+       </div>
+       <h1 id="header-title" data-font="primary" data-type="heading-2" class="font-semibold tracking-tight">100% Natural Tomato Powder</h1>
+      </div>
+      <div class="hidden md:flex items-center gap-6"><button type="button" class="text-sm font-medium hover:underline" data-font="secondary" data-type="label" onclick="scrollToSection('home-section')"> Home </button> <button type="button" class="text-sm font-medium hover:underline" data-font="secondary" data-type="label" onclick="scrollToSection('about-section')"> About </button> <button type="button" class="text-sm font-medium hover:underline" data-font="secondary" data-type="label" onclick="scrollToSection('products-section')"> Products </button> <button type="button" class="text-sm font-medium hover:underline" data-font="secondary" data-type="label" onclick="scrollToSection('wholesale-section')"> Wholesale </button> <button type="button" class="text-sm font-medium hover:underline" data-font="secondary" data-type="label" onclick="scrollToSection('contact-section')"> Contact </button>
+      </div>
+     </div>
+    </nav>
+   </header>
+   <main class="flex-1 w-full" role="main"><!-- Hero / Home -->
+    <section id="home-section" class="w-full" aria-labelledby="home-heading">
+     <div class="max-w-5xl mx-auto px-5 py-10 md:py-14 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+       <h2 id="home-heading" data-font="primary" data-type="heading-1" class="font-semibold leading-tight mb-3">Welcome to Our Natural Products</h2>
+       <p id="home-subtext" data-font="primary" data-type="body" class="mb-6">Pure, chemical-free, sun-dried tomato powder directly from farm to kitchen.</p>
+       <div class="flex flex-wrap gap-3 items-center"><button type="button" class="primary-btn inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold shadow-md transition-transform transform hover:-translate-y-0.5" data-font="secondary" data-type="label"> Order on WhatsApp </button> <button type="button" class="inline-flex items-center justify-center rounded-full border border-current px-4 py-2 text-xs font-semibold" data-font="secondary" data-type="label" onclick="scrollToSection('products-section')"> View Products </button>
+       </div>
+      </div><!-- Hero illustration card -->
+      <div class="surface-card rounded-3xl shadow-lg p-6 relative overflow-hidden">
+       <div class="absolute -right-6 -top-6 w-28 h-28 opacity-20">
+        <div class="w-full h-full rounded-full border-4 border-red-500"></div>
+       </div>
+       <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-3">
+         <div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center"><span aria-hidden="true" class="text-white text-xl">🍅</span>
+         </div>
+         <div>
+          <p class="font-semibold" data-font="primary" data-type="body">Sun-Dried Goodness</p>
+          <p class="text-xs opacity-80" data-font="secondary" data-type="tiny">Rich tomato flavour preserved naturally.</p>
+         </div>
+        </div>
+        <div class="border-t border-dashed pt-4">
+         <p class="text-sm" data-font="primary" data-type="body">Perfect for gravies, soups, pasta, pizzas, chutneys and more. Just a spoonful gives instant tomato richness without chopping or cooking time.</p>
+        </div>
+        <div class="grid grid-cols-3 gap-3 mt-3">
+         <div class="surface-panel rounded-2xl p-3 flex flex-col gap-1 text-center">
+          <p class="text-xs font-semibold" data-font="secondary" data-type="label">No Preservatives</p>
+          <p class="text-[11px] opacity-80" data-font="secondary" data-type="tiny">Only sun-dried tomatoes</p>
+         </div>
+         <div class="surface-panel rounded-2xl p-3 flex flex-col gap-1 text-center">
+          <p class="text-xs font-semibold" data-font="secondary" data-type="label">Farm-Fresh</p>
+          <p class="text-[11px] opacity-80" data-font="secondary" data-type="tiny">Direct from growers</p>
+         </div>
+         <div class="surface-panel rounded-2xl p-3 flex flex-col gap-1 text-center">
+          <p class="text-xs font-semibold" data-font="secondary" data-type="label">Shelf Stable</p>
+          <p class="text-[11px] opacity-80" data-font="secondary" data-type="tiny">Easy storage &amp; use</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section><!-- About -->
+    <section id="about-section" class="w-full" aria-labelledby="about-heading">
+     <div class="max-w-5xl mx-auto px-5 pb-10">
+      <div class="surface-card rounded-3xl shadow-md p-6 md:p-8 flex flex-col md:flex-row gap-6 items-start">
+       <div class="flex-1">
+        <h2 id="about-heading" data-font="primary" data-type="heading-2" class="font-semibold mb-2">About Us</h2>
+        <p id="about-text" data-font="primary" data-type="body" class="mb-4">We provide 100% natural and hygienically processed tomato powder. No preservatives, no added colours — only pure dried tomatoes.</p>
+        <ul class="space-y-1 text-sm" data-font="secondary" data-type="body">
+         <li>• Carefully selected ripe tomatoes</li>
+         <li>• Sun-dried and gently processed</li>
+         <li>• Packed in food-grade, moisture-safe pouches</li>
+         <li>• Ideal for both home kitchens and professional use</li>
+        </ul>
+       </div>
+       <d
